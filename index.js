@@ -11,64 +11,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// API endpoint for ytmp3 (audio download)
-app.get('/ytmp3', async (req, res) => {
-    const { url, quality } = req.query;
-    
-    if (!url) {
-        return res.status(400).json({
-            status: false,
-            error: 'URL is required'
-        });
-    }
-
-    try {
-        const result = await ytmp3(url, quality || '128');
-        res.json({
-            status: result.status,
-            download: result.download,
-            metadata: result.metadata,
-            error: result.status ? null : result.result,
-            author: 'kenn'
-        });
-    } catch (error) {
-        res.status(500).json({
-            status: false,
-            error: 'Server error: ' + error.message,
-            author: 'kenn'
-        });
-    }
-});
-
-// API endpoint for ytmp4 (video download)
-app.get('/ytmp4', async (req, res) => {
-    const { url, quality } = req.query;
-    
-    if (!url) {
-        return res.status(400).json({
-            status: false,
-            error: 'URL is required'
-        });
-    }
-
-    try {
-        const result = await ytmp4(url, quality || '360');
-        res.json({
-            status: result.status,
-            download: result.download,
-            metadata: result.metadata,
-            error: result.status ? null : result.result,
-            author: 'kenn'
-        });
-    } catch (error) {
-        res.status(500).json({
-            status: false,
-            error: 'Server error: ' + error.message,
-            author: 'kenn'
-        });
-    }
-});
-
 // API endpoint for ytsearch (search videos by name)
 app.get('/ytsearch', async (req, res) => {
     const { query } = req.query;
@@ -76,7 +18,8 @@ app.get('/ytsearch', async (req, res) => {
     if (!query) {
         return res.status(400).json({
             status: false,
-            error: 'Search query is required'
+            error: 'Search query is required',
+            author: 'DANI'
         });
     }
 
@@ -86,13 +29,13 @@ app.get('/ytsearch', async (req, res) => {
             status: result.status,
             results: result.results,
             error: result.status ? null : result.result,
-            author: 'kenn'
+            author: 'DANI'
         });
     } catch (error) {
         res.status(500).json({
             status: false,
             error: 'Server error: ' + error.message,
-            author: 'kenn'
+            author: 'DANI'
         });
     }
 });
@@ -104,7 +47,8 @@ app.get('/play', async (req, res) => {
     if (!query) {
         return res.status(400).json({
             status: false,
-            error: 'Search query is required'
+            error: 'Search query is required',
+            author: 'DANI'
         });
     }
 
@@ -115,7 +59,7 @@ app.get('/play', async (req, res) => {
             return res.status(404).json({
                 status: false,
                 error: 'No videos found for the query',
-                author: 'kenn'
+                author: 'DANI'
             });
         }
 
@@ -129,13 +73,13 @@ app.get('/play', async (req, res) => {
             download: downloadResult.download,
             metadata: downloadResult.metadata,
             error: downloadResult.status ? null : downloadResult.result,
-            author: 'kenn'
+            author: 'DANI'
         });
     } catch (error) {
         res.status(500).json({
             status: false,
             error: 'Server error: ' + error.message,
-            author: 'kenn'
+            author: 'DANI'
         });
     }
 });
@@ -147,7 +91,8 @@ app.get('/play2', async (req, res) => {
     if (!query) {
         return res.status(400).json({
             status: false,
-            error: 'Search query is required'
+            error: 'Search query is required',
+            author: 'DANI'
         });
     }
 
@@ -158,7 +103,7 @@ app.get('/play2', async (req, res) => {
             return res.status(404).json({
                 status: false,
                 error: 'No videos found for the query',
-                author: 'kenn'
+                author: 'DANI'
             });
         }
 
@@ -172,13 +117,13 @@ app.get('/play2', async (req, res) => {
             download: downloadResult.download,
             metadata: downloadResult.metadata,
             error: downloadResult.status ? null : downloadResult.result,
-            author: 'kenn'
+            author: 'DANI'
         });
     } catch (error) {
         res.status(500).json({
             status: false,
             error: 'Server error: ' + error.message,
-            author: 'kenn'
+            author: 'DANI'
         });
     }
 });
